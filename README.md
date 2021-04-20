@@ -1,2 +1,103 @@
-# vuexDemo
-é€šè¿‡ç®€å•çš„å®ä¾‹å­¦ä¹ Vuexä¸­Stateã€Mutationsã€Actionsã€Gettersçš„ä½¿ç”¨
+# demo1
+
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
+
+# ×é¼ş·ÃÎÊ State ÖĞÊı¾İµÄÁ½ÖÖ·½Ê½
+
+- Ê¹ÓÃ `this.$store.state` À´½øĞĞ·ÃÎÊ
+- Ê¹ÓÃ `mapState` À´½øĞĞ·ÃÎÊ
+
+> 1.´Ó vuex ÖĞ°´Ğèµ¼Èë mapState º¯Êı
+> `import {mapState} from 'vuex'`
+
+> 2.Í¨¹ı`mapState`º¯Êı½«µ±Ç°×é¼şĞèÒªµÄÈ«¾ÖÊı¾İ£¬Ó³Éäµ½µ±Ç°×é¼şµÄ computed ¼ÆËãÊôĞÔ
+
+```vue
+computed: { ...mapState(['count']) }
+```
+
+# Mutation--ĞŞ¸Ä State ÖĞµÄÊı¾İ
+
+Ê¹ÓÃ Mutation£¬ÔÚ Motation ÖĞÌí¼ÓÒ»¸ö·½·¨¶Ô state ½øĞĞĞŞ¸Ä£¬³ö·¢ Mutation µÄ·½Ê½ÓĞÁ½ÖÖ£º
+
+- µ÷ÓÃ`this.$store.commit`·½·¨À´½øĞĞ´¥·¢
+- µ÷ÓÃ`mapMutations`À´½øĞĞ´¥·¢
+
+> 1.´Ó vuex ÖĞ°´Ğèµ¼Èë mapMutations º¯Êı
+> `import { mapMutations } from 'vuex'`
+
+> 2.Í¨¹ı`mapMutations`º¯Êı½«ĞèÒªµÄ Mutations º¯Êı£¬Ó³Éäµ½µ±Ç°×é¼şµÄ methods ·½·¨
+
+```vue
+methods: { ...mapMutations (['add', 'addN']) }
+```
+
+> ĞèÒª×¢ÒâµÄÊÇ£º
+> **_Mutations ÖĞ²»ÄÜĞ´Òì²½µÄ´úÂë£¬·ñÔòÒ³Ãæ±äÁËµ«ÊÇÊµ¼ÊµÄÖµÃ»ÓĞ¸Ä±ä_**  
+> Ê¹ÓÃ**Action**À´´¦ÀíÒì²½²Ù×÷
+
+# Action--Òì²½²Ù×÷
+
+Èç¹ûÍ¨¹ıÒì²½²Ù×÷±ä¸üÊı¾İ£¬±ØĞëÍ¨¹ı Action£¬²»ÄÜÊ¹ÓÃ Mutation£¬µ«ÊÇÔÚ Action ÖĞ»¹ÊÇÒªÍ¨¹ı´¥·¢ Mutation µÄ·½Ê½¼ä½Ó±ä¸üÊı¾İ
+
+> ¶¨Òå
+
+```vue
+actions:{ addAsync(context){ setTimeout(()=>{ context.commit('add') },1000) } }
+```
+
+> ´¥·¢·½Ê½
+
+- µ÷ÓÃ`this.$store.dispatch`´¥·¢ Action
+- µ÷ÓÃ`mapActions`´¥·¢ Action
+
+> µÚÒ»ÖÖ
+
+```vue
+this.$store.dispatch('addAsync')
+```
+
+> µÚ¶şÖÖ 1.´Ó vuex ÖĞ°´Ğèµ¼Èë mapActions º¯Êı
+> `import { mapActions } from 'vuex'`
+
+> 2.Í¨¹ı`mapActions`º¯Êı½«ĞèÒªµÄ Actions º¯Êı£¬Ó³Éäµ½µ±Ç°×é¼şµÄ methods ·½·¨
+
+```vue
+methods: { ...mapActions (['addAsync', 'addNAsync']) }
+```
+
+# Getter--¶Ô store ÖĞÊı¾İ¼Ó¹¤´¦Àí
+
+1. Getter ¼Ó¹¤´¦Àí store ÖĞµÄÊı¾İ£¬Éú³ÉĞÂÊı¾İ£¬µ«ÊÇ²»»á¶Ô store ÖĞµÄÊı¾İ½øĞĞĞŞ¸Ä£¬ÀàËÆÓÚ Vue ÖĞµÄ¼ÆËãÊôĞÔ¡£
+2. Store ÖĞÊı¾İ±ä»¯£¬Getter Ò²»á¸ú×Å±ä»¯¡£
+
+```vue
+getters:{ showNum: state => { return 'µ±Ç°×îĞÂÊıÁ¿Îª' + state.count } }
+```
+
+3. Ê¹ÓÃ·½Ê½
+
+- Í¨¹ı`this.$store.getters.Ãû³Æ`·ÃÎÊ
+- Í¨¹ı`mapGetters`·ÃÎÊ
+
